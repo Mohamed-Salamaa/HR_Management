@@ -1,0 +1,19 @@
+version: "2.2"
+services:
+  db:
+    image: postgres:10
+    #restart: always
+    environment:
+      POSTGRES_USER: salama
+      POSTGRES_PASSWORD: salama
+      POSTGRES_DB: HR_db
+    ports:
+      - 5434:5432
+  
+  admin:
+    image: adminer
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - 8081:8080

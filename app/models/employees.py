@@ -1,5 +1,5 @@
-from  run import db
-from services.model_util import * 
+from  app.config import db
+from app.services.model_util import * 
 
 class Employee(db.Model):
 

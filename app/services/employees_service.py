@@ -1,5 +1,5 @@
-from run import db
-from models.employees import *
+from app.config import db
+from app.models.employees import *
 
 
 
