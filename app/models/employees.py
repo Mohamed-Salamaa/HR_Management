@@ -5,8 +5,9 @@ class Employee(db.Model):
 
     id = db.Column (db.Integer , primary_key = True , autoincrement = True)
     employee_name = db.Column (db.String(200) , nullable = False)
-    employee_department = db.Column (db.String(200) , nullable = False)
-
+    user_name = db.Column (db.String(200) , nullable = False)
+    password  = db.Column (db.String(200) , nullable = False)
+    email = db.Column (db.String(200) , nullable = False)
 
         #model to dict function
     def to_dict(self):
