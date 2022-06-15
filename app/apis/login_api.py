@@ -10,21 +10,20 @@ from app.services.login_service import *
 user_model = api.model('user', model_to_rest(Users()))
 
 
-# Route for handling the login page logic
+# Route for handling the login API
 @api.route('/login/<int:id>')
 class Login(Resource):
     @api.expect(user_model)
     def post(self, id):
         user = get_user_by_id(id)
         if user:
-            employee_login(id)
-            return 200
+           Result =  employee_login(id)
+        return Result
 
 @api.route('/logout/<int:id>')
 class Logout(Resource):
-    @api.expect(user_model)
     def post(self, id):
         user = get_user_by_id(id)
         if user:
-            employee_logout(id)
-            return 200
+            Result = employee_logout(id)
+        return Result

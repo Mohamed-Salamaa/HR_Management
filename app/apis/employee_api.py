@@ -7,7 +7,7 @@ from app.services.employees_service import *
 
 employee_model = api.model('employee', model_to_rest(Employee()))
 
-
+# Route for handling the Employee API
 @api.route('/employees')
 class Employees(Resource):
     @api.expect(employee_model)

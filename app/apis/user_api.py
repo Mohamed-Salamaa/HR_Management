@@ -7,7 +7,7 @@ from app.services.users_service import *
 
 user_model = api.model('user', model_to_rest(Users()))
 
-
+# Route for handling the User API
 @api.route('/users')
 class User(Resource):
     @api.expect(user_model)
