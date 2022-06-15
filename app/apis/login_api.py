@@ -1,24 +1,30 @@
-import json
-from app.config import app
-from flask import jsonify, render_template,  request , session 
+from flask import jsonify
+from app.config import api
+from flask_restx import Resource
 from app.models.employees import *
+from app.services.users_service import *
+from app.services.rest_model import *
+from app.services.login_service import *
+
+
+user_model = api.model('user', model_to_rest(Users()))
+
 
 # Route for handling the login page logic
-@app.route('/login', methods=['GET', 'POST'])
+@api.route('/login/<int:id>')
+class Login(Resource):
+    @api.expect(user_model)
+    def post(self, id):
+        user = get_user_by_id(id)
+        if user:
+            employee_login(id)
+            return 200
 
-def login():
-    msg = ''
-    if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
-        username = request.form['username']
-        password = request.form['password']
-        search_query = db.session.query(Employee)
-        account = search_query.filter(Employee.user_name == username , Employee.password == password).first()
-        if account:
-            session['loggedin'] = True
-            session['id'] = account.id
-            session['username'] = account.user_name
-            msg = 'Logged in successfully !'
-            return jsonify ({"message" : "Logged in successfully!!"})
-        else:
-            msg = 'Incorrect username / password !'
-    return render_template('login.html', msg = msg)
+@api.route('/logout/<int:id>')
+class Logout(Resource):
+    @api.expect(user_model)
+    def post(self, id):
+        user = get_user_by_id(id)
+        if user:
+            employee_logout(id)
+            return 200

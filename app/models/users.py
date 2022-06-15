@@ -1,13 +1,14 @@
-from  app.config import db
+from app.config import db
+from sqlalchemy import Column, ForeignKey, Integer
+from sqlalchemy.orm import relationship
 from app.services.model_util import * 
-from sqlalchemy.orm import  relationship
 
-class Employee(db.Model):
+class Users(db.Model):
 
     id = db.Column (db.Integer , primary_key = True , autoincrement = True)
-    employee_name = db.Column (db.String(200) , nullable = False)
-    check_login = db.Column(db.Boolean , default=False )
-    user = db.relationship('Users', backref='Users', lazy=True, uselist=False)
+    user_name = db.Column (db.String(200) , nullable = False)
+    password  = db.Column (db.String(200) , nullable = False)
+    employee_id = db.Column(db.Integer, db.ForeignKey('employee.id'), nullable=False)
 
 
     #model to dict function

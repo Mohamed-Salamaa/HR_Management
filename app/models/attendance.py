@@ -11,7 +11,7 @@ class Attendance(db.Model):
     employee_id = db.Column(db.Integer , db.ForeignKey('employee.id') , nullable = False)
     employee = db.relationship('Employee', backref='Attendance')
 
-        #model to dict function
+    #model to dict function
     def to_dict(self):
         return model_to_dict(self)
 

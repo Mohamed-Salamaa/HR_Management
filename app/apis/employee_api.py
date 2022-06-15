@@ -15,7 +15,8 @@ class Employees(Resource):
         args = request.json
         save_employee(args)
         return 200
-    
+
+
     @api.marshal_list_with(employee_model)
     def get(self):
         employees_list = get_all_employees()
