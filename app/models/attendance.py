@@ -1,3 +1,5 @@
+from email.policy import default
+from wsgiref.handlers import format_date_time
 from app.config import db
 from app.services.model_util import * 
 from datetime import datetime
@@ -5,8 +7,11 @@ from datetime import datetime
 class Attendance(db.Model):
     
     id = db.Column (db.Integer , primary_key = True , autoincrement = True, nullable = False)
-    check_in = db.Column (db.DateTime, nullable = False, default=datetime.utcnow)
-    check_out = db.Column (db.DateTime , nullable = True,default=datetime.utcnow)
+    check_in = db.Column (db.DateTime, nullable = True,default=datetime.utcnow)
+    check_out = db.Column (db.DateTime ,nullable = True, default=datetime.utcnow)
+    check_in_selector =  db.Column (db.Boolean ,default = False)
+    check_out_selector =  db.Column (db.Boolean ,default = False)
+
 
     employee_id = db.Column(db.Integer , db.ForeignKey('employee.id') , nullable = False)
     employee = db.relationship('Employee', backref='Attendance')

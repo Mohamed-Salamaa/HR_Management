@@ -23,3 +23,9 @@ def get_all_attendance(id):
             attendance_list = attendance_search_query.filter(Attendance.employee_id == id).all()
             print(attendance_list)
             return attendance_list
+
+def check_date(check_in , check_out):
+    if check_out <= check_in:
+        return False
+    else:
+        return True
