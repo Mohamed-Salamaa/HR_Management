@@ -1,3 +1,4 @@
+from email.policy import default
 from  app.config import db
 from app.services.model_util import * 
 from sqlalchemy.orm import  relationship
@@ -7,6 +8,7 @@ class Employee(db.Model):
     id = db.Column (db.Integer , primary_key = True , autoincrement = True)
     employee_name = db.Column (db.String(200) , nullable = False)
     check_login = db.Column(db.Boolean , default=False )
+    checked_in = db.Column(db.Boolean, default=False)
     user = db.relationship('Users', backref='Users', lazy=True, uselist=False)
 
 

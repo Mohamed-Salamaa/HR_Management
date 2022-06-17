@@ -5,7 +5,11 @@ from flask import request
 from app.services.rest_model import *
 from app.services.users_service import *
 
-user_model = api.model('user', model_to_rest(Users()))
+user_model = api.model('user', {
+  "user_name": fields.String,
+  "password": fields.String,
+  "employee_id": fields.Integer
+})
 
 # Route for handling the User API
 @api.route('/users')
@@ -15,9 +19,3 @@ class User(Resource):
         args = request.json
         save_user(args)
         return 200
-
-
-    @api.marshal_list_with(user_model)
-    def get(self):
-        users_list = get_all_users()
-        return users_list
