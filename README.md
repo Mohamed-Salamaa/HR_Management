@@ -1,5 +1,10 @@
 # HR_Management 
 
+#Database Diagram
+
+https://github.com/Mohamed-Salamaa/HR_Management/blob/main/DB%20Diagram.png
+
+
 
 ## Running the project
 The Project Controlled by the following scripts:
