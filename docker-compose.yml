@@ -1,19 +1,16 @@
-version: "2.2"
+version: '3.5'
 services:
-  db:
-    image: postgres:10
-    #restart: always
-    environment:
-      POSTGRES_USER: salama
-      POSTGRES_PASSWORD: salama
-      POSTGRES_DB: HR_db
+  database:
+    container_name: postgres
+    image: postgres:latest
+    env_file: database.conf
     ports:
-      - 5434:5432
-  
+      - 5434:5432  
+      
   admin:
     image: adminer
     restart: always
     depends_on:
-      - db
+      - database
     ports:
       - 8081:8080

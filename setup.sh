@@ -31,6 +31,6 @@ pip install -r $home/requirements.txt
 
 # down docker compose and up it again
 echo "RUN Docker >>>>>>>>>>>>>>"
-sudo docker-compose  -f docker-compose.yml up -d db admin
+sudo docker-compose  -f docker-compose.yml up -d database admin
 
 
